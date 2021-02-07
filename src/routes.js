@@ -11,7 +11,7 @@ export default function Routes() {
         {' '}
         {/* allow only one page per route */}
         <Route path="/" component={Main} exact />
-        <Route path="/repository" component={Repository} />
+        <Route path="/repository/:repository" component={Repository} />
       </Switch>
     </BrowserRouter>
   );

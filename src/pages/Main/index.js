@@ -1,9 +1,10 @@
 /* eslint-disable react/state-in-constructor */
 import React, { Component } from 'react';
 import { FaGithubAlt, FaPlus, FaSpinner } from 'react-icons/fa';
-
+import { Link } from 'react-router-dom';
 import api from '../../services/api';
-import { Container, SubmitButton, Form, List } from './styles';
+import { SubmitButton, Form, List } from './styles';
+import Container from '../../components/Container';
 
 export default class Main extends Component {
   state = {
@@ -11,6 +12,22 @@ export default class Main extends Component {
     repositories: [],
     loading: false,
   };
+
+  // load localstore datas
+  componentDidMount() {
+    const repositories = localStorage.getItem('repositories');
+    if (repositories) {
+      this.setState({ repositories: JSON.parse(repositories) });
+    }
+  }
+
+  // save localstore datas
+  componentDidUpdate(_, prevState) {
+    const { repositories } = this.state;
+    if (prevState.repositories !== repositories) {
+      localStorage.setItem('repositories', JSON.stringify(repositories));
+    }
+  }
 
   handleInputChange = (e) => {
     this.setState({ newRepo: e.target.value });
@@ -61,7 +78,9 @@ export default class Main extends Component {
           {repositories.map((repository) => (
             <li key={repository.name}>
               <span>{repository.name}</span>
-              <a href="/">Details</a>
+              <Link to={`/repository/${encodeURIComponent(repository.name)}`}>
+                Details
+              </Link>
             </li>
           ))}
         </List>
