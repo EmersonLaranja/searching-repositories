@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { FaGithubAlt, FaPlus, FaSpinner } from 'react-icons/fa';
 
 import api from '../../services/api';
-import { Container, SubmitButton, Form } from './styles';
+import { Container, SubmitButton, Form, List } from './styles';
 
 export default class Main extends Component {
   state = {
@@ -32,7 +32,7 @@ export default class Main extends Component {
   };
 
   render() {
-    const { newRepo, loading } = this.state;
+    const { newRepo, loading, repositories } = this.state;
 
     return (
       <Container>
@@ -56,6 +56,15 @@ export default class Main extends Component {
             )}
           </SubmitButton>
         </Form>
+
+        <List>
+          {repositories.map((repository) => (
+            <li key={repository.name}>
+              <span>{repository.name}</span>
+              <a href="/">Details</a>
+            </li>
+          ))}
+        </List>
       </Container>
     );
   }
