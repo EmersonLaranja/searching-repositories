@@ -4,8 +4,10 @@
 
 # 🖼️ Images
 
-<img alt="Main screen" src="public/main-screen.jpeg" width="250px" />
-<img alt="Details screen" src="public/details-screen.jpeg" width="250px" />
+<div align="center">
+  <img alt="Main screen" src="public/main-screen.jpeg" width="500px" />
+<img alt="Details screen" src="public/details-screen.jpeg" width="500px" />
+<div/>
 
 ## 📝 License
 
